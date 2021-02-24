@@ -138,17 +138,12 @@ func (st StateTransition) TransitionDb(ctx sdk.Context, config ChainConfig) (*Ex
 			// gas must be consumed to match to accurately simulate an Ethereum transaction
 			ctx.GasMeter().ConsumeGas(cost-consumedGas, "Intrinsic gas match")
 		}
-
-		csdb = st.Csdb.Copy()
 	}
 
 	// This gas meter is set up to consume gas from gaskv during evm execution and be ignored
 	currentGasMeter := ctx.GasMeter()
 	evmGasMeter := sdk.NewInfiniteGasMeter()
 	csdb.WithContext(ctx.WithGasMeter(evmGasMeter))
-
-	// Clear cache of accounts to handle changes outside of the EVM
-	csdb.UpdateAccounts()
 
 	params := csdb.GetParams()
 
@@ -227,6 +222,9 @@ func (st StateTransition) TransitionDb(ctx sdk.Context, config ChainConfig) (*Ex
 		// Finalise state if not a simulated transaction
 		// TODO: change to depend on config
 		if err := csdb.Finalise(true); err != nil {
+			return nil, err
+		}
+		if _, err = csdb.Commit(true); err != nil {
 			return nil, err
 		}
 	}

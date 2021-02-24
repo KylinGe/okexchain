@@ -21,7 +21,7 @@ func (suite *KeeperTestSuite) TestQuerier() {
 		expPass  bool
 	}{
 		{"balance", []string{types.QueryBalance, addrHex}, func() {
-			suite.app.EvmKeeper.SetBalance(suite.ctx, suite.address, big.NewInt(5))
+			suite.stateDB.WithContext(suite.ctx).SetBalance(suite.address, big.NewInt(5))
 		}, true},
 		//{"balance fail", []string{types.QueryBalance, "0x01232"}, func() {}, false},
 		{"block number", []string{types.QueryBlockNumber}, func() {}, true},
@@ -50,9 +50,9 @@ func (suite *KeeperTestSuite) TestQuerier() {
 		{"account", []string{types.QueryAccount, "0x0"}, func() {}, true},
 		{"exportAccount", []string{types.QueryExportAccount, suite.address.String()}, func() {
 			for i := 0; i < 5; i++ {
-				suite.app.EvmKeeper.SetState(suite.ctx, suite.address, ethcmn.BytesToHash([]byte(fmt.Sprintf("key%d", i))), ethcmn.BytesToHash([]byte(fmt.Sprintf("value%d", i))))
+				suite.stateDB.WithContext(suite.ctx).SetState(suite.address, ethcmn.BytesToHash([]byte(fmt.Sprintf("key%d", i))), ethcmn.BytesToHash([]byte(fmt.Sprintf("value%d", i))))
 			}
-			suite.app.EvmKeeper.Finalise(suite.ctx, false)
+			suite.stateDB.WithContext(suite.ctx).Finalise(false)
 		}, true},
 		{"unknown request", []string{"other"}, func() {}, false},
 		{"parameters", []string{types.QueryParameters}, func() {}, true},

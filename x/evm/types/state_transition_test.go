@@ -116,6 +116,8 @@ func (suite *StateDBTestSuite) TestTransitionDb() {
 	_ = acc.SetCoins(sdk.NewCoins(balance))
 	suite.app.AccountKeeper.SetAccount(suite.ctx, acc)
 
+	suite.stateDB = types.CreateEmptyCommitStateDB(suite.app.EvmKeeper.GenerateCSDBParams(), suite.ctx)
+
 	priv, err := ethsecp256k1.GenerateKey()
 	suite.Require().NoError(err)
 	recipient := ethcrypto.PubkeyToAddress(priv.ToECDSA().PublicKey)
@@ -274,7 +276,8 @@ func (suite *StateDBTestSuite) TestTransitionDb() {
 		if tc.expPass {
 			suite.Require().NoError(err, tc.name)
 			fromBalance := suite.app.EvmKeeper.GetBalance(suite.ctx, suite.address)
-			toBalance := suite.app.EvmKeeper.GetBalance(suite.ctx, recipient)
+			toBalance :=  suite.app.EvmKeeper.GetBalance(suite.ctx, recipient)
+
 			suite.Require().Equal(fromBalance, sdk.NewDec(4950).BigInt(), tc.name)
 			suite.Require().Equal(toBalance, sdk.NewDec(50).BigInt(), tc.name)
 		} else {

@@ -247,7 +247,7 @@ func (suite *EvmTestSuite) TestExport() {
 		},
 	}
 	evm.InitGenesis(suite.ctx, *suite.app.EvmKeeper, suite.app.AccountKeeper, initGenesis)
-	suite.app.EvmKeeper.Finalise(suite.ctx, false)
+	suite.stateDB.WithContext(suite.ctx).Finalise(false)
 
 	suite.Require().NotPanics(func() {
 		evm.ExportGenesis(suite.ctx, *suite.app.EvmKeeper, suite.app.AccountKeeper)
