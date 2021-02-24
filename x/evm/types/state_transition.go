@@ -145,7 +145,8 @@ func (st StateTransition) TransitionDb(ctx sdk.Context, config ChainConfig) (*Ex
 	// This gas meter is set up to consume gas from gaskv during evm execution and be ignored
 	currentGasMeter := ctx.GasMeter()
 	evmGasMeter := sdk.NewInfiniteGasMeter()
-	csdb.WithContext(ctx.WithGasMeter(evmGasMeter))
+	ctx = ctx.WithGasMeter(evmGasMeter)
+	csdb.WithContext(ctx)
 
 	// Clear cache of accounts to handle changes outside of the EVM
 	csdb.UpdateAccounts()
