@@ -89,7 +89,7 @@ func (suite *StateDBTestSuite) TestBloomFilter() {
 	// Prepare db for logs
 	tHash := ethcmn.BytesToHash([]byte{0x1})
 	bhash := ethcmn.BytesToHash([]byte{0x1})
-	suite.stateDB.Prepare(tHash, bhash,0)
+	suite.stateDB.Prepare(tHash, bhash, 0)
 	contractAddress := ethcmn.BigToAddress(big.NewInt(1))
 	log := ethtypes.Log{Address: contractAddress}
 

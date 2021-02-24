@@ -56,6 +56,7 @@ func (k *Keeper) GetLogs(ctx sdk.Context, hash ethcmn.Hash) ([]*ethtypes.Log, er
 func (k *Keeper) AllLogs(ctx sdk.Context) []*ethtypes.Log {
 	return types.CreateEmptyCommitStateDB(k.GenerateCSDBParams(), ctx).AllLogs()
 }
+
 // ----------------------------------------------------------------------------
 // Auxiliary
 // ----------------------------------------------------------------------------

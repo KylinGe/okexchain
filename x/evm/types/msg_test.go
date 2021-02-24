@@ -3,11 +3,12 @@ package types
 import (
 	"bytes"
 	"fmt"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/common/math"
 	"math/big"
 	"strings"
 	"testing"
+
+	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/ethereum/go-ethereum/common/math"
 
 	"github.com/stretchr/testify/require"
 

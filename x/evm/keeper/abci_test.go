@@ -91,10 +91,13 @@ func (suite *KeeperTestSuite) TestResetCache() {
 
 	_ = suite.app.EvmKeeper.EndBlock(suite.ctx, abci.RequestEndBlock{Height: 1})
 
-	//suite.Require().Zero(suite.stateDB.TxIndex())
-	//suite.Require().Equal(ethcmn.Hash{}, suite.stateDB.BlockHash())
+	err = suite.stateDB.Reset(ethcmn.Hash{})
+	suite.Require().Nil(err)
+
+	suite.Require().Zero(suite.stateDB.TxIndex())
+	suite.Require().Equal(ethcmn.Hash{}, suite.stateDB.BlockHash())
 	suite.Require().Zero(suite.app.EvmKeeper.Bloom.Int64())
 	suite.Require().Zero(suite.app.EvmKeeper.TxCount)
-	//suite.Require().Zero(len(suite.stateDB.WithContext(suite.ctx).Preimages()))
-	//suite.Require().Zero(suite.stateDB.GetRefund())
+	suite.Require().Zero(len(suite.stateDB.WithContext(suite.ctx).Preimages()))
+	suite.Require().Zero(suite.stateDB.GetRefund())
 }

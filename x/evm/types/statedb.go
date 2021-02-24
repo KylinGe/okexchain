@@ -32,14 +32,13 @@ type revision struct {
 	journalIndex int
 }
 
-type CommitStateDBParams struct{
-	StoreKey sdk.StoreKey
-	ParamSpace params.Subspace
+type CommitStateDBParams struct {
+	StoreKey      sdk.StoreKey
+	ParamSpace    params.Subspace
 	AccountKeeper AccountKeeper
-	SupplyKeeper SupplyKeeper
-	BankKeeper bank.Keeper
+	SupplyKeeper  SupplyKeeper
+	BankKeeper    bank.Keeper
 }
-
 
 // CommitStateDB implements the Geth state.StateDB interface. Instead of using
 // a trie and database for querying and persistence, the Keeper uses KVStores

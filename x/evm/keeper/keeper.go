@@ -43,7 +43,7 @@ type Keeper struct {
 	// on the KVStore or adding it as a field on the EVM genesis state.
 	TxCount int
 	Bloom   *big.Int
-	Bhash ethcmn.Hash
+	Bhash   ethcmn.Hash
 }
 
 // NewKeeper generates new evm module keeper
@@ -60,9 +60,9 @@ func NewKeeper(
 		cdc:           cdc,
 		storeKey:      storeKey,
 		accountKeeper: ak,
-		paramSpace: paramSpace,
-		supplyKeeper: sk,
-		bankKeeper: bk,
+		paramSpace:    paramSpace,
+		supplyKeeper:  sk,
+		bankKeeper:    bk,
 		TxCount:       0,
 		Bloom:         big.NewInt(0),
 	}
@@ -70,12 +70,12 @@ func NewKeeper(
 
 // Logger returns a module-specific logger.
 func (k Keeper) GenerateCSDBParams() types.CommitStateDBParams {
-	return types.CommitStateDBParams {
-		StoreKey: k.storeKey,
-		ParamSpace: k.paramSpace,
+	return types.CommitStateDBParams{
+		StoreKey:      k.storeKey,
+		ParamSpace:    k.paramSpace,
 		AccountKeeper: k.accountKeeper,
-		SupplyKeeper: k.supplyKeeper,
-		BankKeeper: k.bankKeeper,
+		SupplyKeeper:  k.supplyKeeper,
+		BankKeeper:    k.bankKeeper,
 	}
 }
 
@@ -121,6 +121,7 @@ func (k Keeper) GetHeightHash(ctx sdk.Context, height uint64) common.Hash {
 
 // SetHeightHash sets the block header hash associated with a given height.
 func (k Keeper) SetHeightHash(ctx sdk.Context, height uint64, hash common.Hash) {
+	// csdb directly store height hash into store!!!
 	types.CreateEmptyCommitStateDB(k.GenerateCSDBParams(), ctx).SetHeightHash(height, hash)
 }
 

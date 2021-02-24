@@ -2,6 +2,7 @@ package evm
 
 import (
 	"fmt"
+
 	authexported "github.com/cosmos/cosmos-sdk/x/auth/exported"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"

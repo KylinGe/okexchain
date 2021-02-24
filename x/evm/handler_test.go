@@ -40,7 +40,7 @@ type EvmTestSuite struct {
 	handler sdk.Handler
 	querier sdk.Querier
 	app     *app.OKExChainApp
-	stateDB     *types.CommitStateDB
+	stateDB *types.CommitStateDB
 	codec   *codec.Codec
 }
 

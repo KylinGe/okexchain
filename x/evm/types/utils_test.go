@@ -1,15 +1,16 @@
 package types
 
 import (
+	"math/big"
+	"strings"
+	"testing"
+
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	ethcmn "github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/stretchr/testify/require"
-	"math/big"
-	"strings"
-	"testing"
 )
 
 func TestEvmDataEncoding(t *testing.T) {

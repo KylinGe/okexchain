@@ -173,7 +173,7 @@ func (suite *EvmTestSuite) TestInit() {
 			tc.malleate(&genesisState)
 
 			genesisState["evm"] = types.ModuleCdc.MustMarshalJSON(tc.genState)
- 			stateBytes, err := codec.MarshalJSONIndent(chain.Codec(), genesisState)
+			stateBytes, err := codec.MarshalJSONIndent(chain.Codec(), genesisState)
 			if err != nil {
 				panic(err)
 			}

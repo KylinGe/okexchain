@@ -1,10 +1,11 @@
 package types
 
 import (
-	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	"github.com/stretchr/testify/require"
 	"strings"
 	"testing"
+
+	ethtypes "github.com/ethereum/go-ethereum/core/types"
+	"github.com/stretchr/testify/require"
 )
 
 func TestQueryString(t *testing.T) {

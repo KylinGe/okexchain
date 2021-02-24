@@ -2,6 +2,9 @@ package types
 
 import (
 	"fmt"
+	"math/big"
+	"strings"
+
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -12,8 +15,6 @@ import (
 	"github.com/okex/okexchain/app/crypto/ethsecp256k1"
 	"github.com/pkg/errors"
 	"golang.org/x/crypto/sha3"
-	"math/big"
-	"strings"
 )
 
 // GenerateEthAddress generates an Ethereum address.
