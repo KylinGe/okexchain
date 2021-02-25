@@ -12,7 +12,7 @@ import (
 )
 
 // ----------------------------------------------------------------------------
-// Setters
+// Setters， only for test use
 // ----------------------------------------------------------------------------
 
 // SetBalance calls CommitStateDB.SetBalance using the passed in context
@@ -30,7 +30,7 @@ func (k *Keeper) SetNonce(ctx sdk.Context, addr ethcmn.Address, nonce uint64) {
 }
 
 // ----------------------------------------------------------------------------
-// Getters
+// Getters, for test and query case
 // ----------------------------------------------------------------------------
 // GetBalance calls CommitStateDB.GetBalance using the passed in context
 func (k *Keeper) GetBalance(ctx sdk.Context, addr ethcmn.Address) *big.Int {
@@ -58,7 +58,7 @@ func (k *Keeper) AllLogs(ctx sdk.Context) []*ethtypes.Log {
 }
 
 // ----------------------------------------------------------------------------
-// Auxiliary
+// Auxiliary, for test and query case
 // ----------------------------------------------------------------------------
 // ForEachStorage calls CommitStateDB.ForEachStorage using passed in context
 func (k *Keeper) ForEachStorage(ctx sdk.Context, addr ethcmn.Address, cb func(key, value ethcmn.Hash) bool) error {

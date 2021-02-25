@@ -2,9 +2,8 @@ package keeper_test
 
 import (
 	"fmt"
-	"math/big"
-
 	ethcmn "github.com/ethereum/go-ethereum/common"
+	"math/big"
 
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/okex/okexchain/x/evm/types"
@@ -21,7 +20,7 @@ func (suite *KeeperTestSuite) TestQuerier() {
 		expPass  bool
 	}{
 		{"balance", []string{types.QueryBalance, addrHex}, func() {
-			suite.stateDB.WithContext(suite.ctx).SetBalance(suite.address, big.NewInt(5))
+			suite.app.EvmKeeper.SetBalance(suite.ctx, suite.address, big.NewInt(5))
 		}, true},
 		//{"balance fail", []string{types.QueryBalance, "0x01232"}, func() {}, false},
 		{"block number", []string{types.QueryBlockNumber}, func() {}, true},
